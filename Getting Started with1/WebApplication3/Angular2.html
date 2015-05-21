@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Demo 2</title>
+    <script src="angular.min.js"></script>
+</head>
+<body ng-app>
+    <input type="text" placeholder="Quick Search" ng-model="filterQuery" />
+    <div ng-init="friends=[
+         {name:'Sanka', city:'Mount Lavinia'},
+         {name:'Jaliya',city:'Kandy'},
+         {name:'Prabath',city:'Athurugiriya'}
+         ]">
+        <ul>
+            <li ng-repeat="friend in friends | orderBy:'name' | filter:filterQuery">
+            {{friend.name}} - {{friend.city}}
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

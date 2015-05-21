@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Demo 3</title>
+    <script src="angular.min.js"></script>
+    <script type="text/javascript">
+        var friendAppModule = angular.module('friendApp', []);
+
+        friendAppModule.controller('friendController', function ($scope) {
+            $scope.friends = [
+                { name: 'Jaliya', city: 'Kandy' },
+                { name: 'Sanka', city: 'Mount Lavinia' },
+                { name: 'Prabath', city: 'Athurugiriya' }
+            ];
+
+            $scope.addFriend = function () {
+                $scope.friends.push({
+                    name: $scope.newFriend.name,
+                    city: $scope.newFriend.city
+                });
+
+                $scope.newFriend.name = '';
+                $scope.newFriend.city = '';
+            }
+        });
+    </script>
+</head>
+<body ng-app="friendApp">
+    <div ng-controller="friendController">
+        <table>
+            <tr>
+                <td colspan="2"><b>Add a friend</b></td>
+            </tr>
+            <tr>
+                <td>Name : </td>
+                <td>
+                    <input type="text" ng-model="newFriend.name" placeholder="name here" />
+                </td>
+            </tr>
+            <tr>
+                <td>City : </td>
+                <td>
+                    <input type="text" ng-model="newFriend.city" placeholder="city here" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <button ng-click="addFriend()">Add</button>
+                </td>
+            </tr>
+        </table>
+        <hr />
+        <input type="text" placeholder="Quick Search" ng-model="filterQuery" />
+        <ul>
+            <li ng-repeat="friend in friends | orderBy:'name' | filter:filterQuery">
+                {{friend.name}} - {{friend.city}}
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

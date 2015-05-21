@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Demo 3</title>
+    <script src="angular.min.js"></script>
+    <script type="text/javascript">
+        function friendController($scope) {
+            $scope.friends = [
+                { name: 'Jaliya', city: 'Kandy' },
+                { name: 'Sanka', city: 'Mount Lavinia' },
+                { name: 'Prabath', city: 'Athurugiriya' }
+            ];
+        }
+    </script>
+</head>
+<body ng-app>
+    <input type="text" placeholder="Quick Search" ng-model="filterQuery" />
+    <div ng-controller="friendController">
+        <ul>
+            <li ng-repeat="friend in friends | orderBy:'name' | filter:filterQuery">
+                {{friend.name}} - {{friend.city}}
+            </li>
+        </ul>
+    </div>
+</body>
+</html>
